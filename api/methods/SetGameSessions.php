@@ -30,7 +30,7 @@ if($SetCard->rowCount() < 1)
 }
 #END GENERATE BINGO CARD
 
-#SET SESSION IF SESSION SUCCESSFULLY SAVED
+#SET SESSION IF GAME SUCCESSFULLY SAVED
 $_SESSION["GAMESESSION"] = $GameSession;
 
 echo json_encode(["ErrorCode"=>0, "ErrorMessage" => "Success", "Records" => ["GameSession" => $GameSession, "PlayerCard" => $GeneratedBingoCardArr]]);

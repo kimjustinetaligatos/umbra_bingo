@@ -34,7 +34,16 @@
         </div>
         <div class="col">
             <div class="text-center">
-                <button class="btn btn-primary">Roll Bingo</button>
+                <button class="btn btn-primary" ng-click="SetBingoNumber()">Roll Bingo</button>
+            </div>
+            <div class="mt-30" ng-init="GetBingoNumbers()">
+                <h5 class="text-center">Bingo Numbers</h5>
+
+                <div class="row">
+                    <div class="col-1" ng-repeat="BingoNumbersValues in BingoNumbers">
+                        <span>{{BingoNumbersValues.letter}}{{BingoNumbersValues.number}}</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

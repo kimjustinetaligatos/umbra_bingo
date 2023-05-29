@@ -5,15 +5,11 @@ class Bingo_Model
 {
 
     protected $DB;
-    protected $helpers;
 
     public function __construct()
     {
         $database = new Database();
         $this->DB = $database->Connect();
-
-        $this->helpers = new Helpers();
-
     }
 
     public function SetGameSession($game_sessions)
@@ -24,6 +20,16 @@ class Bingo_Model
             ":game_sessions" => $game_sessions,
         ]);
         return $Set;
+    }
+
+    public function GetCard($game_sessions)
+    {
+        $Get = "SELECT * FROM tbl_cards WHERE game_sessions=:game_sessions ORDER BY row ASC";
+        $Get = $this->DB->prepare($Get);
+        $Get->execute([
+            ":game_sessions" => $game_sessions,
+        ]);
+        return $Get->fetchAll(\PDO::FETCH_OBJ);
     }
 
     public function SetCard($game_sessions, $GeneratedBingoCardArr)
@@ -44,10 +50,29 @@ class Bingo_Model
             }
 
         }
-        //$stmt->execute();
         return $stmt;
+    }
 
+    public function SetBingoNumber($game_sessions, $letter, $number)
+    {
+        $Set = "INSERT into tbl_bingo_numbers(game_sessions,letter,number) values(:game_sessions,:letter,:number)";
+        $Set = $this->DB->prepare($Set);
+        $Set->execute([
+            ":game_sessions" => $game_sessions,
+            ":letter" => $letter,
+            ":number" => $number,
+        ]);
+        return $Set;
+    }
 
+    public function GetBingoNumbers($game_sessions)
+    {
+        $Get = "SELECT * FROM tbl_bingo_numbers WHERE game_sessions=:game_sessions ORDER BY id DESC";
+        $Get = $this->DB->prepare($Get);
+        $Get->execute([
+            ":game_sessions" => $game_sessions,
+        ]);
+        return $Get->fetchAll(\PDO::FETCH_OBJ);
     }
 
 
