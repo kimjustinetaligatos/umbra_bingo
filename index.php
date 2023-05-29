@@ -21,104 +21,12 @@
             <div class="bingo-card">
                 <h5 class="text-center">Your Bingo Card</h5>
                 <div class="row">
-                    <div class="col">
+                    <div class="col" ng-repeat="(key, value) in PlayerCard">
                         <div class="row">
-                            <div class="col text-center">B</div>
+                            <div class="col text-center"><span>{{key}}</span></div>
                         </div>
-                        <div class="row">
-                            <div class="col text-center">1</div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">2</div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">3</div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">4</div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">5</div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="row">
-                            <div class="col text-center">I</div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">1</div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">2</div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">3</div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">4</div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">5</div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="row">
-                            <div class="col text-center">N</div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">1</div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">2</div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">3</div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">4</div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">5</div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="row">
-                            <div class="col text-center">G</div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">1</div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">2</div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">3</div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">4</div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">5</div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="row">
-                            <div class="col text-center">O</div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">1</div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">2</div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">3</div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">4</div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">5</div>
+                        <div class="row" ng-repeat="CardNumberValues in value">
+                            <div class="col text-center">{{CardNumberValues}}</div>
                         </div>
                     </div>
                 </div>

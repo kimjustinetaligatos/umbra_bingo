@@ -24,6 +24,7 @@ angular.module('clientApp').controller("CommonController", function ($scope, $ro
                 alert(data.ErrorMessage);
             } else {
                 $scope.GameSession = data.Records.GameSession;
+                $scope.PlayerCard = data.Records.PlayerCard;
             }
             $scope.isProcessing = false;
         });
