@@ -13,12 +13,13 @@
 <body ng-controller="CommonController" ng-cloak="" ng-init="GetGameSessions()">
 <div class="container-fluid">
     <div ng-if="!GameSession" class="text-center mt-30">
-        <h3>Bingo</h3>
-        <button class="btn btn-primary" ng-click="SetGameSessions()">Start Game</button>
+        <h2 class="welcome">Welcome to Bingo</h2>
+        <button ng-disabled="isProcessing" class="btn btn-primary" ng-click="SetGameSessions()">Start Game</button>
     </div>
     <div class="row mt-30" ng-if="GameSession">
         <div class="col">
             <div class="bingo-card">
+                <div class="bingo-card-loading" ng-if="isProcessingBingoCard">Loading...</div>
                 <div class="row">
                     <div class="col" ng-repeat="(key, value) in PlayerCard">
                         <div class="row">
@@ -36,8 +37,8 @@
         </div>
         <div class="col">
             <div class="text-center">
-                <button ng-if="!isBingo" class="btn btn-primary" ng-click="SetBingoNumber()">Roll Bingo</button>
-                <button ng-if="isBingo" class="btn btn-success" ng-click="SetGameSessions()">Start New Game</button>
+                <button ng-disabled="isProcessing" ng-if="!isBingo" class="btn btn-primary" ng-click="SetBingoNumber()">Roll Bingo</button>
+                <button ng-disabled="isProcessing" ng-if="isBingo" class="btn btn-success" ng-click="SetGameSessions()">Start New Game</button>
 
             </div>
             <div class="mt-30" ng-init="GetBingoNumbers()">

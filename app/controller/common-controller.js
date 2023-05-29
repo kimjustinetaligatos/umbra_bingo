@@ -1,6 +1,6 @@
 angular.module('clientApp').controller("CommonController", function ($scope, $rootScope, HttpRequest) {
 
-    $UrlPrefix = "/umbra_bingo"
+    $UrlPrefix = "";//"/umbra_bingo"
     $scope.GameSession = false;
     $scope.MarkedCardNumbersArr = [];
 
@@ -14,7 +14,7 @@ angular.module('clientApp').controller("CommonController", function ($scope, $ro
                 $scope.GameSession = data.Records.GameSession;
                 $scope.PlayerCard = data.Records.PlayerCard;
                 $scope.MarkedCardNumbersArr = data.Records.MarkedCardNumbersArr;
-                if(data.Records.GetGameSessionInfo.is_game_ended == 1){
+                if(data.Records.GetGameSessionInfoGameEnded == 1){
                     $scope.isBingo = 1;
                 }
             }
@@ -67,7 +67,7 @@ angular.module('clientApp').controller("CommonController", function ($scope, $ro
     }
 
     $scope.SetMarkCardNumber = function (letter, number){
-        $scope.isProcessing = true;
+        $scope.isProcessingBingoCard = true;
         var url = $UrlPrefix + "/api/methods/SetMarkCardNumber.php";
         $scope.SetMarkCardNumberParam = {};
         $scope.SetMarkCardNumberParam.letter = letter;
@@ -83,7 +83,7 @@ angular.module('clientApp').controller("CommonController", function ($scope, $ro
                     swal({title: "Bingo!", text: "Congratulations", icon: "success",});
                 }
             }
-            $scope.isProcessing = false;
+            $scope.isProcessingBingoCard = false;
         });
     }
 

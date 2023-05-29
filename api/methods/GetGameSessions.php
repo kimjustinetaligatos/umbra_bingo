@@ -11,7 +11,9 @@ if(isset($_SESSION["GAMESESSION"])){
     echo json_encode([
         "ErrorCode"=>0,
         "ErrorMessage" => "Success",
-        "Records" => []]);
+        "Records" => [
+            "GetGameSessionInfoGameEnded" => 0
+        ]]);
     exit();
 }
 
@@ -43,6 +45,6 @@ echo json_encode([
         "GameSession" => $GameSession,
         "PlayerCard" => $GeneratedBingoCardArr,
         "MarkedCardNumbersArr" => $MarkedCardNumbersArr,
-        "GetGameSessionInfo" => $GetGameSessionInfo[0],
+        "GetGameSessionInfoGameEnded" => $GetGameSessionInfo[0]->is_game_ended,
     ]]);
 exit();

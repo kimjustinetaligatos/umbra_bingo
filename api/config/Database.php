@@ -11,9 +11,9 @@ class Database
   public function __construct()
   {
       $this->host = "localhost";
-      $this->username = "root";
-      $this->password = "";
-      $this->dbname = "dbumbra";
+      $this->username = "elenrzgy_keychain";
+      $this->password = "keychain";
+      $this->dbname = "elenrzgy_keychain";
   }
   public function Connect()
   {
