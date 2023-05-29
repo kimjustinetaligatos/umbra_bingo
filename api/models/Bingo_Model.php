@@ -151,4 +151,15 @@ class Bingo_Model
     }
 
 
+    public function CheckDiagonalBingo($game_sessions, $where)
+    {
+        $Get = "SELECT COUNT(*) AS CNT FROM tbl_cards WHERE game_sessions=:game_sessions AND is_marked=1 AND ( {$where} );";
+        $Get = $this->DB->prepare($Get);
+        $Get->execute([
+            ":game_sessions" => $game_sessions,
+        ]);
+        return $Get->fetchAll(\PDO::FETCH_OBJ)[0]->CNT;
+    }
+
+
 }

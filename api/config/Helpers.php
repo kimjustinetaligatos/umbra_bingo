@@ -35,4 +35,14 @@ class Helpers
             "O" => [71,85]
         ];
     }
+
+    public function GenerateWhereClause($Array)
+    {
+        $WhereClause = "";
+        foreach ($Array as $key => $value){
+            $WhereClause .= "(letter='".$key."' AND row=".$value.")OR";
+        }
+
+        return substr($WhereClause, 0, -2);
+    }
 }

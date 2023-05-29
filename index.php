@@ -37,8 +37,8 @@
         </div>
         <div class="col">
             <div class="text-center">
-                <button ng-if="!isBingo" class="btn btn-success" ng-click="SetBingoNumber()">Roll Bingo</button>
-                <button ng-if="isBingo" class="btn btn-primary" ng-click="SetGameSessions()">Start New Game</button>
+                <button ng-if="!isBingo" class="btn btn-primary" ng-click="SetBingoNumber()">Roll Bingo</button>
+                <button ng-if="isBingo" class="btn btn-success" ng-click="SetGameSessions()">Start New Game</button>
 
             </div>
             <div class="mt-30" ng-init="GetBingoNumbers()">

@@ -33,12 +33,40 @@ if($CheckBingoNumber->rowCount() > 0)
             $isBingo = 1;
         }
 
+        $Diagonal1 = [
+            "B" => 1,
+            "I" => 2,
+            "N" => 3,
+            "G" => 4,
+            "O" => 5,
+        ];
+        $WhereClause = $Helpers->GenerateWhereClause($Diagonal1);
+
+        $CheckVerticalBingo = $Bingo_Model->CheckDiagonalBingo($_SESSION["GAMESESSION"], $WhereClause);
+        if($CheckVerticalBingo >= 5)
+        {
+            $isBingo = 1;
+        }
+
+        $Diagonal2 = [
+            "B" => 5,
+            "I" => 4,
+            "N" => 3,
+            "G" => 2,
+            "O" => 1,
+        ];
+        $WhereClause = $Helpers->GenerateWhereClause($Diagonal2);
+
+        $CheckVerticalBingo = $Bingo_Model->CheckDiagonalBingo($_SESSION["GAMESESSION"], $WhereClause);
+        if($CheckVerticalBingo >= 5)
+        {
+            $isBingo = 1;
+        }
+
         #MARK GAME AS DONE
         if($isBingo){
             $SetGameSessionEnd = $Bingo_Model->SetGameSessionEnd($_SESSION["GAMESESSION"]);
         }
-
-
 
         echo json_encode(["ErrorCode"=>0, "ErrorMessage" => "Success", "IsBingo" => $isBingo]);
         exit();
@@ -46,7 +74,7 @@ if($CheckBingoNumber->rowCount() > 0)
 }
 else
 {
-    echo json_encode(["ErrorCode"=>1, "ErrorMessage" => "Not a bingo number"]);
+    echo json_encode(["ErrorCode"=>1, "ErrorMessage" => "Not a Bingo number"]);
     exit();
 }
 
