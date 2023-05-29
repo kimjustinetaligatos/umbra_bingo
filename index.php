@@ -8,7 +8,7 @@
     <title>Bingo</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="assets/css/custom.css?v=<?php echo date('YmdHis') ?>">
 </head>
 <body ng-controller="CommonController" ng-cloak="" ng-init="GetGameSessions()">
 <div class="container-fluid">
@@ -19,16 +19,15 @@
     <div class="row mt-30" ng-if="GameSession">
         <div class="col">
             <div class="bingo-card">
-                <h5 class="text-center">Your Bingo Card</h5>
                 <div class="row">
                     <div class="col" ng-repeat="(key, value) in PlayerCard">
                         <div class="row">
-                            <div class="col text-center"><span>{{key}}</span></div>
+                            <div class="col text-center bingo-header"><div>{{key}}</div></div>
                         </div>
                         <div class="row" ng-repeat="CardNumberValues in value">
                             <div class="col text-center">
-                                <a ng-if="!isMarked(key, CardNumberValues)" href="#" ng-click="SetMarkCardNumber(key, CardNumberValues)">{{CardNumberValues}}</a>
-                                <span ng-if="isMarked(key, CardNumberValues)" href="#">{{CardNumberValues}}</span>
+                                <div class="number-box" ng-if="!isMarked(key, CardNumberValues)" ng-click="SetMarkCardNumber(key, CardNumberValues)">{{CardNumberValues}}</div>
+                                <div class="number-box marked" ng-if="isMarked(key, CardNumberValues)">{{CardNumberValues}}</div>
                             </div>
                         </div>
                     </div>
@@ -46,8 +45,8 @@
 
                 <div class="row">
                     <div class="col-1 text-center" ng-repeat="BingoNumbersValues in BingoNumbers"
-                         ng-class="{'col-12': $index == 0}">
-                        <span>{{BingoNumbersValues.letter}}{{BingoNumbersValues.number}}</span>
+                         ng-class="{'col-12 current-bingo-ball': $index == 0}">
+                        <div class="bingo-balls">{{BingoNumbersValues.letter}}{{BingoNumbersValues.number}}</div>
                     </div>
                 </div>
             </div>

@@ -7,10 +7,47 @@
     margin-top: 30px;
     width: 600px;
     margin: 0 auto;
+    background: #3397dc;
+    border: 10px solid #1875b9;
 }
 
 .mt-30{margin-top: 30px}
 
 .swal-footer {
     text-align: center;
+}
+
+.number-box{
+    background: #ffffff;
+    font-size: 20px;
+    color: #444444;
+    margin-top: 5px;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.number-box.marked{
+    background: #606060;
+    color: #ffffff;
+    cursor: default;
+}
+
+.bingo-header{
+    font-size: 20px;
+}
+
+.bingo-balls{
+    border: 3px solid #06a0e4;
+    font-size: 17px;
+    border-radius: 50%;
+    width: 56px;
+    margin: 5px auto 0 auto;
+    padding: 11px 0;
+}
+
+.current-bingo-ball .bingo-balls{
+    border: 3px solid #39a639;
+    width: 100px;
+    padding: 25px 0;
+    font-size: 25px;
 }
