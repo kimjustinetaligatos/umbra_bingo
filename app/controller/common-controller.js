@@ -91,4 +91,45 @@ angular.module('clientApp').controller("CommonController", function ($scope, $ro
         return $scope.MarkedCardNumbersArr.includes(letter+''+number);
     }
 
+    $scope.GetAllGameSessions = function () {
+        $scope.isProcessing = true;
+        var url = $UrlPrefix + "/api/methods/GetAllGameSessions.php";
+        HttpRequest.Request(url, []).success(function (data) {
+            if (data.ErrorCode != 0) {
+                swal({title: "Error", text: data.ErrorMessage, icon: "error",});
+            } else {
+                $scope.GameSessions = data.Records.GameSessions;
+            }
+            $scope.isProcessing = false;
+        });
+    }
+
+    $scope.GetGameSessionHistory = function (session){
+        $scope.isProcessing = true;
+        var url = $UrlPrefix + "/api/methods/GetGameSessionHistory.php";
+        HttpRequest.Request(url, {session:session}).success(function (data) {
+            if (data.ErrorCode != 0) {
+                swal({title: "Error", text: data.ErrorMessage, icon: "error",});
+            } else {
+                $scope.GameSession = data.Records.GameSession;
+                $scope.PlayerCard = data.Records.PlayerCard;
+                $scope.MarkedCardNumbersArr = data.Records.MarkedCardNumbersArr;
+            }
+            $scope.isProcessing = false;
+        });
+    }
+
+    $scope.GetBingoNumbersHistory = function (session){
+        $scope.isProcessing = true;
+        var url = $UrlPrefix + "/api/methods/GetBingoNumbersHistory.php";
+        HttpRequest.Request(url, {session:session}).success(function (data) {
+            if (data.ErrorCode != 0) {
+                swal({title: "Error", text: data.ErrorMessage, icon: "error",});
+            } else {
+                $scope.BingoNumbers = data.Records.BingoNumbers;
+            }
+            $scope.isProcessing = false;
+        });
+    }
+
 });

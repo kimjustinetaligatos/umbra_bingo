@@ -10,18 +10,14 @@
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/custom.css?v=<?php echo date('YmdHis') ?>">
 </head>
-<body ng-controller="CommonController" ng-cloak="" ng-init="GetGameSessions()">
+<body ng-controller="CommonController" ng-cloak="" ng-init='GetGameSessionHistory("<?php echo $_GET['session']?>")'>
 <div class="container-fluid">
     <div class="row mt-30">
         <div class="col">
             <a href="history.php" class="float-end">View Game History</a>
         </div>
     </div>
-    <div ng-if="!GameSession" class="text-center mt-30">
-        <h2 class="welcome">Welcome to Bingo</h2>
-        <button ng-disabled="isProcessing" class="btn btn-primary" ng-click="SetGameSessions()">Start Game</button>
-    </div>
-    <div class="row mt-30" ng-if="GameSession">
+    <div class="row mt-30">
         <div class="col">
             <div class="bingo-card">
                 <div class="bingo-card-loading" ng-if="isProcessingBingoCard">Loading...</div>
@@ -32,7 +28,7 @@
                         </div>
                         <div class="row" ng-repeat="CardNumberValues in value">
                             <div class="col text-center">
-                                <div class="number-box" ng-if="!isMarked(key, CardNumberValues)" ng-click="SetMarkCardNumber(key, CardNumberValues)">{{CardNumberValues}}</div>
+                                <div class="number-box" ng-if="!isMarked(key, CardNumberValues)">{{CardNumberValues}}</div>
                                 <div class="number-box marked" ng-if="isMarked(key, CardNumberValues)">{{CardNumberValues}}</div>
                             </div>
                         </div>
@@ -41,17 +37,11 @@
             </div>
         </div>
         <div class="col">
-            <div class="text-center">
-                <button ng-disabled="isProcessing" ng-if="!isBingo" class="btn btn-primary" ng-click="SetBingoNumber()">Roll Bingo</button>
-                <button ng-disabled="isProcessing" ng-if="isBingo" class="btn btn-success" ng-click="SetGameSessions()">Start New Game</button>
-
-            </div>
-            <div class="mt-30" ng-init="GetBingoNumbers()">
+            <div class="" ng-init='GetBingoNumbersHistory("<?php echo $_GET['session']?>")'>
                 <h5 class="text-center">Bingo Numbers</h5>
 
                 <div class="row">
-                    <div class="col-1 text-center" ng-repeat="BingoNumbersValues in BingoNumbers"
-                         ng-class="{'col-12 current-bingo-ball': $index == 0}">
+                    <div class="col-1 text-center" ng-repeat="BingoNumbersValues in BingoNumbers">
                         <div class="bingo-balls">{{BingoNumbersValues.letter}}{{BingoNumbersValues.number}}</div>
                     </div>
                 </div>

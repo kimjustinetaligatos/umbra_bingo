@@ -161,5 +161,12 @@ class Bingo_Model
         return $Get->fetchAll(\PDO::FETCH_OBJ)[0]->CNT;
     }
 
+    public function GetAllGameSessions()
+    {
+        $Get = "SELECT * FROM tbl_game_sessions ORDER BY id DESC";
+        $Get = $this->DB->prepare($Get);
+        $Get->execute();
+        return $Get->fetchAll(\PDO::FETCH_OBJ);
+    }
 
 }
