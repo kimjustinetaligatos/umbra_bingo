@@ -66,6 +66,7 @@ if($CheckBingoNumber->rowCount() > 0)
         #MARK GAME AS DONE
         if($isBingo){
             $SetGameSessionEnd = $Bingo_Model->SetGameSessionEnd($_SESSION["GAMESESSION"]);
+            unset($_SESSION["GAMESESSION"]);
         }
 
         echo json_encode(["ErrorCode"=>0, "ErrorMessage" => "Success", "IsBingo" => $isBingo]);

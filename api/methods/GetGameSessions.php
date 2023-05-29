@@ -8,7 +8,11 @@ $Bingo_Model = new Bingo_Model();
 if(isset($_SESSION["GAMESESSION"])){
     $GameSession = $_SESSION["GAMESESSION"];
 }else{
-    $GameSession = null;
+    echo json_encode([
+        "ErrorCode"=>0,
+        "ErrorMessage" => "Success",
+        "Records" => []]);
+    exit();
 }
 
 $GetCard = $Bingo_Model->GetCard($GameSession);
