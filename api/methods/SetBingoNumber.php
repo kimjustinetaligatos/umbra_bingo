@@ -7,11 +7,29 @@ $Bingo_Model = new Bingo_Model();
 
 $BingoCardSettings = $Helpers->GetBingoCardSettings();
 
-$RandomLetter = array_rand($BingoCardSettings, 1);
+#CHECK IF RANDOM IS ALREADY EXISTING
+function GenerateUniqueRandomBingoNumber($Helpers, $Bingo_Model, $BingoCardSettings)
+{
 
-$RandomNumber = $Helpers->UniqueRandomNumbersWithinRange($BingoCardSettings[$RandomLetter][0], $BingoCardSettings[$RandomLetter][1], 1);
+    $RandomLetter = array_rand($BingoCardSettings, 1);
+    $RandomNumber = $Helpers->UniqueRandomNumbersWithinRange($BingoCardSettings[$RandomLetter][0], $BingoCardSettings[$RandomLetter][1], 1);
 
-$SetBingoNumber = $Bingo_Model->SetBingoNumber($_SESSION["GAMESESSION"], $RandomLetter, $RandomNumber[0]);
+    $CheckBingoNumberIfExists = $Bingo_Model->CheckBingoNumberIfExists($_SESSION["GAMESESSION"], $RandomLetter, $RandomNumber[0]);
+
+    if($CheckBingoNumberIfExists->rowCount() > 0){
+        #ITERATE UNTIL BINGO NUMBER IS NOT EXISTING
+        return GenerateUniqueRandomBingoNumber($Helpers, $Bingo_Model, $BingoCardSettings);
+    }
+
+    return [
+        "RandomLetter" => $RandomLetter,
+        "RandomNumber" => $RandomNumber[0]
+    ];
+}
+
+$GenerateUniqueRandomBingoNumber = GenerateUniqueRandomBingoNumber($Helpers, $Bingo_Model, $BingoCardSettings);
+
+$SetBingoNumber = $Bingo_Model->SetBingoNumber($_SESSION["GAMESESSION"], $GenerateUniqueRandomBingoNumber["RandomLetter"], $GenerateUniqueRandomBingoNumber["RandomNumber"]);
 
 if($SetBingoNumber->rowCount() < 1)
 {

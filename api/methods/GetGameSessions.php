@@ -12,6 +12,7 @@ if(isset($_SESSION["GAMESESSION"])){
 }
 
 $GetCard = $Bingo_Model->GetCard($GameSession);
+$GetGameSessionInfo = $Bingo_Model->GetGameSession($GameSession);
 
 $GeneratedBingoCardArr = [];
 $BingoCardSettings = $Helpers->GetBingoCardSettings();
@@ -19,9 +20,25 @@ foreach($BingoCardSettings as $key => $bingoCardSetting){
     $GeneratedBingoCardArr[$key] = [];
 }
 
+$MarkedCardNumbersArr = [];
+
 foreach ($GetCard as $GetCardValues){
     array_push($GeneratedBingoCardArr[$GetCardValues->letter], $GetCardValues->number);
+
+    if($GetCardValues->is_marked == 1){
+        array_push($MarkedCardNumbersArr, $GetCardValues->letter . "" . $GetCardValues->number);
+    }
+
 }
 
-echo json_encode(["ErrorCode"=>0, "ErrorMessage" => "Success", "Records" => ["GameSession" => $GameSession, "PlayerCard" => $GeneratedBingoCardArr]]);
+
+echo json_encode([
+    "ErrorCode"=>0,
+    "ErrorMessage" => "Success",
+    "Records" => [
+        "GameSession" => $GameSession,
+        "PlayerCard" => $GeneratedBingoCardArr,
+        "MarkedCardNumbersArr" => $MarkedCardNumbersArr,
+        "GetGameSessionInfo" => $GetGameSessionInfo[0],
+    ]]);
 exit();

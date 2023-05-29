@@ -26,7 +26,10 @@
                             <div class="col text-center"><span>{{key}}</span></div>
                         </div>
                         <div class="row" ng-repeat="CardNumberValues in value">
-                            <div class="col text-center">{{CardNumberValues}}</div>
+                            <div class="col text-center">
+                                <a ng-if="!isMarked(key, CardNumberValues)" href="#" ng-click="SetMarkCardNumber(key, CardNumberValues)">{{CardNumberValues}}</a>
+                                <span ng-if="isMarked(key, CardNumberValues)" href="#">{{CardNumberValues}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -34,13 +37,16 @@
         </div>
         <div class="col">
             <div class="text-center">
-                <button class="btn btn-primary" ng-click="SetBingoNumber()">Roll Bingo</button>
+                <button ng-if="!isBingo" class="btn btn-success" ng-click="SetBingoNumber()">Roll Bingo</button>
+                <button ng-if="isBingo" class="btn btn-primary" ng-click="SetGameSessions()">Start New Game</button>
+
             </div>
             <div class="mt-30" ng-init="GetBingoNumbers()">
                 <h5 class="text-center">Bingo Numbers</h5>
 
                 <div class="row">
-                    <div class="col-1" ng-repeat="BingoNumbersValues in BingoNumbers">
+                    <div class="col-1 text-center" ng-repeat="BingoNumbersValues in BingoNumbers"
+                         ng-class="{'col-12': $index == 0}">
                         <span>{{BingoNumbersValues.letter}}{{BingoNumbersValues.number}}</span>
                     </div>
                 </div>
@@ -51,6 +57,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript" src="assets/js/angular.js"></script>
 <script type="text/javascript" src="app/app.config.js?v=<?php echo date('YmdHis') ?>"></script>
 <script type="text/javascript" src="app/services/app.services.js?v=<?php echo date('YmdHis') ?>"></script>
