@@ -14,7 +14,7 @@
 <div class="container-fluid">
     <div class="row mt-30">
         <div class="col">
-            <a href="history.php" class="float-end">View Game History</a>
+            <a href="history.php" class="float-end">View All Games History</a>
         </div>
     </div>
     <div ng-if="!GameSession" class="text-center mt-30">

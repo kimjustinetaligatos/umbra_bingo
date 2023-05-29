@@ -14,9 +14,10 @@
 <div class="container-fluid">
     <div class="row mt-30">
         <div class="col">
-            <a href="history.php" class="float-end">View Game History</a>
+            <a href="history.php" class="float-end">View All Games History</a>
         </div>
     </div>
+    <div class="row"><div class="col text-center"><h4 class="welcome">Game History</h4></div></div>
     <div class="row mt-30">
         <div class="col">
             <div class="bingo-card">

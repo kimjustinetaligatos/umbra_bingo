@@ -18,8 +18,9 @@
         </div>
     </div>
     <div>
+        <div class="row"><div class="col text-center"><h4 class="welcome">All Games History</h4></div></div>
+
         <table class="table">
-            <table class="table">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -37,7 +38,6 @@
                 </tr>
                 </tbody>
             </table>
-        </table>
     </div>
 </div>
 </body>
