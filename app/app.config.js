@@ -1,1 +1,1 @@
-angular.module('clientApp', []).config();
+angular.module('clientApp', []);
